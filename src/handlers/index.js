@@ -1,0 +1,8 @@
+exports.find = require('./find')
+exports.findOne = require('./findOne')
+exports.create = require('./create')
+exports.update = require('./update')
+exports.delete = require('./delete')
+exports.search = require('./search')
+exports.upsertSearch = require('./upsertSearch')
+exports.upsertSearchMappings = require('./upsertSearchMappings')

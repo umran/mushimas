@@ -1,0 +1,49 @@
+{
+  "name": "@umran/mushimas",
+  "version": "0.0.1",
+  "description": "A tool to bootstrap modern content management and delivery systems using GraphQL, MongoDB, Redis and Elasticsearch.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha",
+    "cover": "istanbul cover _mocha",
+    "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/umran/mushimas.git"
+  },
+  "keywords": [
+    "api",
+    "bootstrap",
+    "mongodb",
+    "graphql",
+    "mongoose",
+    "redis",
+    "elastic",
+    "search",
+    "elasticsearch"
+  ],
+  "author": "Ahmed Umran Hussain",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/umran/mushimas/issues"
+  },
+  "homepage": "https://github.com/umran/mushimas#readme",
+  "dependencies": {
+    "ajv": "^6.7.0",
+    "graphql": "^14.1.1",
+    "graphql-iso-date": "^3.6.1",
+    "mongoose": "^5.4.5"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "coveralls": "^3.0.2",
+    "istanbul": "^1.1.0-alpha.1",
+    "mocha": "^5.2.0",
+    "mocha-lcov-reporter": "^1.3.0"
+  }
+}
