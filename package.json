@@ -1,5 +1,5 @@
 {
-  "name": "@umran/mushimas",
+  "name": "mushimas",
   "version": "0.0.2",
   "description": "A tool to bootstrap modern content management and delivery systems using GraphQL, MongoDB, Redis and Elasticsearch.",
   "main": "index.js",
