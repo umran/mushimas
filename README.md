@@ -1,22 +1,22 @@
-# Apify
+# Mushimas
 
 A tool to bootstrap modern content management and delivery systems using GraphQL, MongoDB, Redis and Elasticsearch.
 
-[![Build Status](https://travis-ci.org/umran/apify.svg?branch=master)](https://travis-ci.org/umran/apify)
-[![Coverage Status](https://img.shields.io/coveralls/github/umran/apify/master.svg)](https://coveralls.io/github/umran/apify?branch=master)
-[![Known Vulnerabilities](https://snyk.io/test/github/umran/apify/badge.svg)](https://snyk.io/test/github/umran/apify)
-[![Dependency Status](https://david-dm.org/umran/apify.svg)](https://david-dm.org/umran/apify)
+[![Build Status](https://travis-ci.org/umran/mushimas.svg?branch=master)](https://travis-ci.org/umran/mushimas)
+[![Coverage Status](https://img.shields.io/coveralls/github/umran/mushimas/master.svg)](https://coveralls.io/github/umran/mushimas?branch=master)
+[![Known Vulnerabilities](https://snyk.io/test/github/umran/mushimas/badge.svg)](https://snyk.io/test/github/umran/mushimas)
+[![Dependency Status](https://david-dm.org/umran/mushimas.svg)](https://david-dm.org/umran/mushimas)
 
 ## Introduction
 
-Apify generates GraphQL CRUD APIs that are tightly coupled with MongoDB, via Mongoose, as a primary store, optionally Redis, among others as a cache store, and Elasticsearch as a full-text search engine. Apify exposes a simple configuration interface that is designed to combine configuration options for Mongoose, GraphQL schemas and Elasticsearch mappings. Apify thus effectively reduces the configuration complexity of backends that rely on MongoDB, Elasticsearch and GraphQL to a single configuration file under a universal syntax.
+Mushimas generates GraphQL CRUD APIs that are tightly coupled with MongoDB, via Mongoose, as a primary store, optionally Redis, among others as a cache store, and Elasticsearch as a full-text search engine. Mushimas exposes a simple configuration interface that is designed to combine configuration options for Mongoose, GraphQL schemas and Elasticsearch mappings. Mushimas thus effectively reduces the configuration complexity of backends that rely on MongoDB, Elasticsearch and GraphQL to a single configuration file under a universal syntax.
 
-For each collection level document that is defined, Apify automatically creates the relevant collection in MongoDB along with its Elasticsearch mappings. It also defines GraphQL endpoints for each collection that allow CRUD operations as well as full-text search to be performed on documents right out of the box.
+For each collection level document that is defined, Mushimas automatically creates the relevant collection in MongoDB along with its Elasticsearch mappings. It also defines GraphQL endpoints for each collection that allow CRUD operations as well as full-text search to be performed on documents right out of the box.
 
 ## Installation
 
 ```
-npm install --save @umran/apify
+npm install --save mushimas
 ```
 
 To actually run the GraphQL server you will also need the `express` and `express-graphql` packages
@@ -61,7 +61,7 @@ const Student = {
 
 #### The Embedded Class
 
-Embedded documents are, as the name suggests, documents that will not be stored under its own collection, but rather embedded in an existing collection. Documents classified as embedded are usually documents that do not make much sense outside the context of a parent document. Because the shape of any individual document schema is flat, Apify requires you to define a separate embedded document for each level of nesting in order to define documents with deeply nested structures.
+Embedded documents are, as the name suggests, documents that will not be stored under its own collection, but rather embedded in an existing collection. Documents classified as embedded are usually documents that do not make much sense outside the context of a parent document. Because the shape of any individual document schema is flat, Mushimas requires you to define a separate embedded document for each level of nesting in order to define documents with deeply nested structures.
 
 See below for an example schema of an embedded document.
 
@@ -151,7 +151,7 @@ The `fields` property is an object that contains all of the fields of the docume
 
 ####  The `field` Object
 
-Each field of a document has a couple of properties that Apify should know about. These properties are provided in the form of a `field` object, one for each field of the document. A field object can have a number of properties, both required and optional depending on its type. See below for details of each field type in turn.
+Each field of a document has a couple of properties that Mushimas should know about. These properties are provided in the form of a `field` object, one for each field of the document. A field object can have a number of properties, both required and optional depending on its type. See below for details of each field type in turn.
 
 ##### String Fields
 
@@ -159,8 +159,8 @@ String fields have a required property: `type`, whose value must be set to "stri
 
 | Property | Required | Type | Description |
 | --- | --- | --- | --- |
-| `required` | true | Boolean | Tells Apify whether to always expect a value for the field |
-| `type` | true | String | Tells Apify how to parse values of the field |
+| `required` | true | Boolean | Tells Mushimas whether to always expect a value for the field |
+| `type` | true | String | Tells Mushimas how to parse values of the field |
 | `es_indexed` | true | Boolean | Tells Elasticsearch whether to analyze the field during indexing |
 | `es_keyword` | true | Boolean | Tells Elasticsearch whether to analyze the field as a `keyword` rather than as full-text |
 | `es_boost` | false | Number | Tells Elasticsearch how to weight the field when calculating the document's relevance score; defaults to 1.0 |
@@ -174,8 +174,8 @@ Integer fields have a required property: `type`, whose value must be set to "int
 
 | Property | Required | Type | Description |
 | --- | --- | --- | --- |
-| `required` | true | Boolean | Tells Apify whether to always expect a value for the field |
-| `type` | true | String | Tells Apify how to parse values of the field |
+| `required` | true | Boolean | Tells Mushimas whether to always expect a value for the field |
+| `type` | true | String | Tells Mushimas how to parse values of the field |
 | `es_indexed` | true | Boolean | Tells Elasticsearch whether to analyze the field during indexing |
 | `es_boost` | false | Number | Tells Elasticsearch how to weight the field when calculating the document's relevance score; defaults to 1.0 |
 
@@ -185,8 +185,8 @@ Float fields have a required property: `type`, whose value must be set to "integ
 
 | Property | Required | Type | Description |
 | --- | --- | --- | --- |
-| `required` | true | Boolean | Tells Apify whether to always expect a value for the field |
-| `type` | true | String | Tells Apify how to parse values of the field |
+| `required` | true | Boolean | Tells Mushimas whether to always expect a value for the field |
+| `type` | true | String | Tells Mushimas how to parse values of the field |
 | `es_indexed` | true | Boolean | Tells Elasticsearch whether to analyze the field during indexing |
 | `es_boost` | false | Number | Tells Elasticsearch how to weight the field when calculating the document's relevance score; defaults to 1.0 |
 
@@ -196,8 +196,8 @@ Integer fields have a required property: `type`, whose value must be set to "int
 
 | Property | Required | Type | Description |
 | --- | --- | --- | --- |
-| `required` | true | Boolean | Tells Apify whether to always expect a value for the field |
-| `type` | true | String | Tells Apify how to parse values of the field |
+| `required` | true | Boolean | Tells Mushimas whether to always expect a value for the field |
+| `type` | true | String | Tells Mushimas how to parse values of the field |
 | `es_indexed` | true | Boolean | Tells Elasticsearch whether to analyze the field during indexing |
 | `es_boost` | false | Number | Tells Elasticsearch how to weight the field when calculating the document's relevance score; defaults to 1.0 |
 
@@ -207,8 +207,8 @@ Date fields have a required property: `type`, whose value must be set to "date".
 
 | Property | Required | Type | Description |
 | --- | --- | --- | --- |
-| `required` | true | Boolean | Tells Apify whether to always expect a value for the field |
-| `type` | true | String | Tells Apify how to parse values of the field |
+| `required` | true | Boolean | Tells Mushimas whether to always expect a value for the field |
+| `type` | true | String | Tells Mushimas how to parse values of the field |
 | `es_indexed` | true | Boolean | Tells Elasticsearch whether to analyze the field during indexing |
 | `es_boost` | false | Number | Tells Elasticsearch how to weight the field when calculating the document's relevance score; defaults to 1.0 |
 | `default` | false | String | Specifies a default date to use during creation of the document. Takes any valid ISO Date string or the value: "current_date", which generates a timestamp during query time (on create or update) |
@@ -219,10 +219,10 @@ Reference fields have a required property: `type`, whose value must be set to "r
 
 | Property | Required | Type | Description |
 | --- | --- | --- | --- |
-| `required` | true | Boolean | Tells Apify whether to always expect a value for the field |
-| `type` | true | String | Tells Apify how to parse values of the field |
+| `required` | true | Boolean | Tells Mushimas whether to always expect a value for the field |
+| `type` | true | String | Tells Mushimas how to parse values of the field |
 | `es_indexed` | true | Boolean | Tells Elasticsearch whether to analyze the field containing the nested document during indexing |
-| `ref` | true | String | Tells Apify which document this field is a reference to. The value should be the document name as defined in the document schema definition and is case sensitive  |
+| `ref` | true | String | Tells Mushimas which document this field is a reference to. The value should be the document name as defined in the document schema definition and is case sensitive  |
 
 ##### Array Fields
 
@@ -230,9 +230,9 @@ Array fields have a required property: `type`, whose value must be set to "array
 
 | Property | Required | Type | Description |
 | --- | --- | --- | --- |
-| `required` | true | Boolean | Tells Apify whether to always expect a value for the field |
-| `type` | true | String | Tells Apify how to parse values of the field |
-| `item` | true | Object <Field> | Tells Apify the field type of the values that are contained in the array. The value must be an object that represents one of the field types described above; cannot be an array type because nesting arrays within arrays is not allowed |
+| `required` | true | Boolean | Tells Mushimas whether to always expect a value for the field |
+| `type` | true | String | Tells Mushimas how to parse values of the field |
+| `item` | true | Object <Field> | Tells Mushimas the field type of the values that are contained in the array. The value must be an object that represents one of the field types described above; cannot be an array type because nesting arrays within arrays is not allowed |
 
 ## Composing the Document Definitions
 
@@ -248,7 +248,7 @@ const documentDefinitions = {
 
 ## Defining the Resolver
 
-The resolver is a single function that defines how GraphQL API calls to the `create_`, `find_`, `findOne_`, `update_`, `delete_` and `search_` endpoints are handled. Because Apify generates the relevant Mongoose models and Elasticsearch mappings during runtime, the user is expected to create a curry function, call it `createResolver`, that accepts an object (which contains the Mongoose models and Elasticsearch mappings) as a parameter and returns an `async` resolver function. The resolver function returned by `createResolver` accepts an object containing details of the method being called by the GraphQL query, the particular document involved, the arguments of the query and the GraphQL context. With this information you could write logic within the resolver function that allows you to respond with the appropriate resource. Since the GraphQL context is provided, access control logic could also be implemented from within the resolver function.
+The resolver is a single function that defines how GraphQL API calls to the `create_`, `find_`, `findOne_`, `update_`, `delete_` and `search_` endpoints are handled. Because Mushimas generates the relevant Mongoose models and Elasticsearch mappings during runtime, the user is expected to create a curry function, call it `createResolver`, that accepts an object (which contains the Mongoose models and Elasticsearch mappings) as a parameter and returns an `async` resolver function. The resolver function returned by `createResolver` accepts an object containing details of the method being called by the GraphQL query, the particular document involved, the arguments of the query and the GraphQL context. With this information you could write logic within the resolver function that allows you to respond with the appropriate resource. Since the GraphQL context is provided, access control logic could also be implemented from within the resolver function.
 
 ### The `createResolver` function
 
@@ -285,7 +285,7 @@ const createResolver = ({ mongoose_models, elastic_mappings }) =>
 Once the `createResolver` function and document definitions are set up, the GraphQL schema can be built by calling the `buildGraphql` function with the document definitions and `createResolver` function as arguments.
 
 ```javascript
-const { buildGraphql } = require('@umran/apify')
+const { buildGraphql } = require('@umran/mushimas')
 
 // for brevity assume these are already defined elsewhere
 const documentDefinitions = require('./documentDefinitions')
@@ -325,7 +325,7 @@ With this capability the main resolver function which runs on the GraphQL API se
 See below for sample code implemented in a separate NodeJS process:
 
 ```javascript
-const { buildBackend } = require('@umran/apify')
+const { buildBackend } = require('@umran/mushimas')
 
 // the document definitions must be available to this process
 const documentDefinitions = require('./documentDefinitions')
