@@ -1,6 +1,6 @@
 {
   "name": "@umran/mushimas",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A tool to bootstrap modern content management and delivery systems using GraphQL, MongoDB, Redis and Elasticsearch.",
   "main": "index.js",
   "directories": {
