@@ -1,4 +1,5 @@
 const MongooseSchema = require('mongoose').Schema
+const systemFields = require('./systemFields')
 
 module.exports = schemas => {
   return Object.keys(schemas).reduce((accumulator, schemaKey) => {
@@ -9,12 +10,21 @@ module.exports = schemas => {
 }
 
 const generateSchema = (schema, schemas, generatedSchemas) => {
-  return new MongooseSchema(Object.keys(schema.fields).reduce((generated, fieldKey) => {
+  let schemaContent = Object.keys(schema.fields).reduce((generated, fieldKey) => {
     generated[fieldKey] = generateField(schema.fields[fieldKey], schemas, generatedSchemas)
 
     return generated
 
-  }, {}))
+  }, {})
+
+  if (schema.class === 'collection') {
+    schemaContent = {
+      ...schemaContent,
+      ...systemFields
+    }
+  }
+
+  return new MongooseSchema(schemaContent)
 }
 
 const generateField = (field, schemas, generatedSchemas) => {
