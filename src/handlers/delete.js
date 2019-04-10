@@ -10,7 +10,10 @@ module.exports = async ({model, ackTime, args}) => {
   let document = await model.findOneAndUpdate(matchCondition, {
     '@status': 'DELETED',
     '@lastModified': ackTime,
-    '@lastCommitted': new Date()
+    '@lastCommitted': new Date(),
+    $inc: {
+      '@version': 1
+    }
   }, deleteOptions)
 
   return _id
