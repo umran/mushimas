@@ -2,7 +2,7 @@ const deleteOptions = {
   new: true
 }
 
-module.exports = async ({model, collection, ackTime, args}) => {
+module.exports = async ({model, ackTime, args}) => {
   const { _id } = args
   const updates = filterUpdates(args)
 
