@@ -123,7 +123,7 @@ const findIndex = (arr, lambda) => {
   return null
 }
 
-module.exports = async (modelKey, model, args, client) => {
+module.exports = async ({modelKey, model, args, client}) => {
   const { query, _options: options } = args
 
   let results = await client.search({

@@ -1,5 +1,4 @@
 const states = [
-  'ARCHIVED',
   'PUBLISHED',
   'DELETED'
 ]

@@ -13,7 +13,7 @@ const createIndex = async (modelKey, client) => {
   }
 }
 
-const createMapping = async (modelKey, mapping, client) => {
+const createMapping = async ({modelKey, mapping, client}) => {
   await client.indices.putMapping({
     index: modelKey,
     type: modelKey,

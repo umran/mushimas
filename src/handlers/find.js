@@ -2,7 +2,7 @@ const { formatResult, deriveArgs } = require('./handlerUtils')
 
 const DEFAULT_LIMIT = 20
 
-module.exports = async (model, argsOptions) => {
+module.exports = async ({model, argsOptions}) => {
 
   const { _options: options } = argsOptions
   const args = deriveArgs(argsOptions)

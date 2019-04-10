@@ -1,4 +1,4 @@
-module.exports = async (modelKey, model, projection, _id, client) => {
+module.exports = async ({modelKey, model, projection, _id, client}) => {
   let doc = await model.findOne({ _id }, { ...projection, _id: 0 }).lean()
 
   await client.update({

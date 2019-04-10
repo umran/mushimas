@@ -1,7 +1,21 @@
-module.exports = async (model, args) => {
-  const { _id } = args
+const deleteOptions = {
+  new: true
+}
 
-  let document = await model.findOneAndDelete({ _id })
+module.exports = async ({model, collection, ackTime, args}) => {
+  const { _id } = args
+  const updates = filterUpdates(args)
+
+  const matchCondition = { _id, '@lastModified': { $lte: ackTime }, '@status': { $not: 'DELETED' } }
+
+  let document = await model.findOneAndUpdate(matchCondition, {
+    '@status': 'DELETED',
+    '@lastModified': ackTime,
+    '@lastCommitted': new Date(),
+    $inc: {
+      '@version': 1
+    }
+  }, deleteOptions)
 
   return _id
 }

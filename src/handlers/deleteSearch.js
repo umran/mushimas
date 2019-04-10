@@ -1,4 +1,4 @@
-module.exports = async (modelKey, _id, client) => {
+module.exports = async ({modelKey, _id, client}) => {
   await client.delete({
     index: modelKey,
     type: modelKey,
