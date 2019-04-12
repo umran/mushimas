@@ -1,5 +1,5 @@
 const exists = (arr, lambda) => {
-  for (var i = 0; i < arr.length; i++) {
+  for (let i = 0; i < arr.length; i++) {
     if (lambda(arr[i]) === true) {
       return true
     }

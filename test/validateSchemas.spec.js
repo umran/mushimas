@@ -115,7 +115,7 @@ describe('validateEmbedded()', () => {
         }
       }
     }
-
+    
     const test = () => {
       validateEmbedded(configurationSchemas)
     }

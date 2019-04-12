@@ -20,22 +20,20 @@ const iterate = (remainingKeys, dependencies, foundations=[]) => {
 
     if (dependencies[key].length === 0) {
       foundations.push(key)
-      return iterate(remainingKeys.filter(key => {
-        !foundations.includes(key)
-      }), dependencies, foundations)
+      return iterate(remainingKeys.filter(key =>
+        !foundations.includes(key)), dependencies, foundations)
+
     } else if (dependencies[key].reduce((truthValue, dependency) => {
-      if (!exists(foundations, foundation => {
-        return foundation === dependency
-      })) {
+      
+      if (!exists(foundations, foundation => foundation === dependency)) {
         return false
       }
 
       return truthValue
     }, true)) {
       foundations.push(key)
-      return iterate(remainingKeys.filter(key => {
-        !foundations.includes(key)
-      }), dependencies, foundations)
+      return iterate(remainingKeys.filter(key =>
+        !foundations.includes(key)), dependencies, foundations)
     }
   }
 
