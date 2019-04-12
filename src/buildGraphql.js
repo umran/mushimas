@@ -5,7 +5,7 @@ module.exports = (schemas, generateResolver) => {
   const backend = buildBackend(schemas)
 
   // generate resolver function
-  const resolver = generateResolver({ ...backend, schemas })
+  const resolver = generateResolver({ ...backend })
 
   // generate graphql schema
   const types = graphql.generateGraphqlTypes(schemas, resolver)

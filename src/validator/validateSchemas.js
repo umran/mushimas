@@ -1,5 +1,6 @@
 const Ajv = require('ajv')
 const SchemaError = require('../errors').SchemaError
+const validateEmbedded = require('./validateEmbedded')
 
 // import type schemas
 const arraySchema = require('./schemas/types/array.json')
@@ -23,4 +24,6 @@ module.exports = schemas => {
       throw new SchemaError(`validationError, the following schema: ${schemaKey} is invalid. Please check that it conforms to the specification described at https://irukandjilabs.com/apify/spec.`)
     }
   })
+
+  validateEmbedded(schemas)
 }

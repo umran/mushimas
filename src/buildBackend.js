@@ -1,6 +1,7 @@
 const validator = require('./validator')
 const mongoose = require('./mongoose')
 const elasticsearch = require('./elasticsearch')
+const { generateSignature } = require('./crypto')
 
 module.exports = schemas => {
   // validate schemas
@@ -16,9 +17,14 @@ module.exports = schemas => {
   // generate projections and populations necessary for search indexing
   const elastic_projections = elasticsearch.generateElasticProjections(schemas)
 
+  // generate signature
+  const signature = generateSignature(schemas)
+
   return {
     mongoose_models,
     elastic_mappings,
-    elastic_projections
+    elastic_projections,
+    schemas,
+    signature
   }
 }

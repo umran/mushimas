@@ -1,0 +1,1 @@
+exports.generateSignature = require('./generateSignature')
