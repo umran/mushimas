@@ -1,7 +1,7 @@
 const validator = require('./validator')
 const mongoose = require('./mongoose')
 const elasticsearch = require('./elasticsearch')
-const { generateSignature } = require('./crypto')
+const { generateSignature } = require('mushimas-crypto')
 
 module.exports = schemas => {
   // validate schemas
