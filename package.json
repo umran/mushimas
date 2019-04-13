@@ -2,7 +2,7 @@
   "name": "mushimas",
   "version": "0.7.1",
   "description": "A tool to bootstrap modern content management and delivery systems using GraphQL, MongoDB, Redis and Elasticsearch.",
-  "main": "index.js",
+  "main": "lib.js",
   "directories": {
     "test": "test"
   },
