@@ -5,7 +5,7 @@ const states = [
 ]
 
 module.exports = {
-  '@status': {
+  '@state': {
     type: String,
     required: true,
     enum: states
