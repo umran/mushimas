@@ -1,2 +1,0 @@
-const generateKey = require('./handlerUtils')
-
