@@ -3,27 +3,32 @@ const mongoose = require('./mongoose')
 const elasticsearch = require('./elasticsearch')
 const { generateSignature } = require('mushimas-crypto')
 
-module.exports = schemas => {
+module.exports = (schemas, dedicated) => {
   // validate schemas
   validator.validateSchemas(schemas)
 
-  // generate mongoose models
-  const mongooseSchemas = mongoose.generateMongooseSchemas(schemas)
-  const mongoose_models = mongoose.generateMongooseModels(schemas, mongooseSchemas)
+  // generate mongoose schemas and models if dedicated is set to true
+  let mongooseSchemas
+  let mongooseModels
 
-  // generate elasticsearch mappings
-  const elastic_mappings = elasticsearch.generateElasticMappings(schemas)
+  if (dedicated === true) {
+    mongooseSchemas = mongoose.generateMongooseSchemas(schemas)
+    mongooseModels = mongoose.generateMongooseModels(schemas, mongooseSchemas)
+  }
 
-  // generate projections and populations necessary for search indexing
-  const elastic_projections = elasticsearch.generateElasticProjections(schemas)
+  // generate type mappings for search indexing
+  const elasticMappings = elasticsearch.generateElasticMappings(schemas)
+
+  // generate projections necessary for search indexing
+  const elasticProjections = elasticsearch.generateElasticProjections(schemas)
 
   // generate signature
   const signature = generateSignature(schemas)
 
   return {
-    mongoose_models,
-    elastic_mappings,
-    elastic_projections,
+    mongoose_models: mongooseModels,
+    elastic_mappings: elasticMappings,
+    elastic_projections: elasticProjections,
     schemas,
     signature
   }

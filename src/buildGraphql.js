@@ -1,8 +1,8 @@
 const buildBackend = require('./buildBackend')
 const graphql = require('./graphql')
 
-module.exports = (schemas, generateResolver) => {
-  const backend = buildBackend(schemas)
+module.exports = (schemas, generateResolver, dedicated=true) => {
+  const backend = buildBackend(schemas, dedicated)
 
   // generate resolver function
   const resolver = generateResolver({ ...backend })

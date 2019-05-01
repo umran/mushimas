@@ -14,7 +14,7 @@ describe('buildBackend()', () => {
     const configurationSchemas = data.configurationSchemas
 
 
-    const backend = buildBackend(configurationSchemas)
+    const backend = buildBackend(configurationSchemas, false)
 
 
     expect(backend).to.have.own.property('mongoose_models')
