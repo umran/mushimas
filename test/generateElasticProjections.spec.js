@@ -65,7 +65,7 @@ const schemas = {
   }
 }
 
-describe('generateElasticProjections()', () => {
+describe('generateElasticProjections', () => {
   it('should generate all collection documents, projecting all fields except self referential fields', () => {
     let projections = generateElasticProjections(schemas)
 

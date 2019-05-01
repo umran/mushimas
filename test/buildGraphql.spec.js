@@ -3,12 +3,18 @@ const buildGraphql = require('../src/buildGraphql')
 const data = require('./data').buildGraphql
 const { GraphQLSchema } = require('graphql')
 
+const mongoose = require('mongoose')
+
 describe('buildGraphql()', () => {
   it('should take valid configuration schemas and a resolver generator and return a valid GraphQL schema', () => {
 
+    // cleanup mongoose
+    mongoose.models = {}
+    mongoose.modelSchemas = {}
+
     const configurationSchemas = data.configurationSchemas
 
-    const dummyGenerateResolver = ({ elastic_mappings, elastic_projections, schemas }) => async ({ method, collection, root, args, context }) => {
+    const dummyGenerateResolver = ({ mongoose_models, elastic_mappings, elastic_projections, schemas }) => async ({ method, collection, root, args, context }) => {
       return
     }
 
