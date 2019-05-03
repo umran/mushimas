@@ -14,7 +14,7 @@ describe('buildGraphql()', () => {
 
     const configurationSchemas = data.configurationSchemas
 
-    const dummyGenerateResolver = ({ mongoose_models, elastic_mappings, elastic_projections, schemas }) => async ({ method, collection, root, args, context }) => {
+    const dummyGenerateResolver = ({ mongoose_models, elastic_mappings, elastic_projections, signature }) => async ({ method, collection, root, args, context }) => {
       return
     }
 

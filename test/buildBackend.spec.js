@@ -20,7 +20,6 @@ describe('buildBackend()', () => {
     expect(backend).to.have.own.property('mongoose_models')
     expect(backend).to.have.own.property('elastic_mappings')
     expect(backend).to.have.own.property('elastic_projections')
-    expect(backend).to.have.own.property('schemas')
     expect(backend).to.have.own.property('signature')
 
   })

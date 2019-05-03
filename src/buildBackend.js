@@ -29,7 +29,6 @@ module.exports = (schemas, dedicated) => {
     mongoose_models: mongooseModels,
     elastic_mappings: elasticMappings,
     elastic_projections: elasticProjections,
-    schemas,
     signature
   }
 }
