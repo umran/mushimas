@@ -1,11 +1,11 @@
-// to-do: formally define and document all errors.
+const { OptionsError } = require('../errors') 
 
 module.exports = (path, schemaKey, schemas) => {
-  const paginatedFieldPattern = /^[a-z]+(?:\.[a-z]+)*$/
+  const paginatedFieldPattern = /^[a-z]+(?:\.[a-z]+)*$/i
   const terminalTypes = ['string', 'integer', 'float', 'date', 'boolean']
 
   if (paginatedFieldPattern.test(path) === false) {
-    throw new Error('invalid syntax')
+    throw new OptionsError('invalidSyntax', 'the field provided could not be parsed into a recognizable path')
   }
 
   const normalizedPath = path.split('.')
@@ -16,26 +16,26 @@ module.exports = (path, schemaKey, schemas) => {
     let field = currentSchema.fields[normalizedPath[i]]
     
     if (!field) {
-      throw new Error('undefined field')
+      throw new OptionsError('undefinedField', 'the field provided is undefined')
     }
 
     if (!field.required) {
-      throw new Error('invalid path: path cannot have a non required field')
+      throw new OptionsError('nonRequiredField', 'path cannot have a non required field')
     }
 
     if (field.type === 'array') {
-      throw new Error('invalid path: path cannot have an array field')
+      throw new OptionsError('arrayField', 'path cannot have an array field')
     } else if (field.enabled === false) {
-      throw new Error('invalid path: path cannot have a disabled field')
+      throw new OptionsError('disabledField', 'path cannot have a disabled field')
     }
 
     if (field.type === 'reference') {
       if (i === normalizedPath.length - 1) {
-        throw new Error('invalid path: path cannot have a reference as the terminal field')   
+        throw new OptionsError('terminalReference', 'path cannot have a reference as the terminal field')   
       }
 
       if (schemas[field.ref].class === 'collection') {
-        throw new Error('invalid path: path cannot have a reference to a collection level document')
+        throw new OptionsError('collectionReference', 'path cannot have a reference to a collection level document')
       }
 
       currentSchema = schemas[field.ref]
@@ -43,7 +43,7 @@ module.exports = (path, schemaKey, schemas) => {
 
     if (terminalTypes.includes(field.type)) {
       if (i !== normalizedPath.length - 1) {
-        throw new Error('invalid path: terminal types can only be at the end of the path')
+        throw new OptionsError('intermediateTerminal', 'terminal types can only be at the end of the path')
       }
     }
   }

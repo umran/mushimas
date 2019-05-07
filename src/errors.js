@@ -6,8 +6,10 @@ class GenericError extends Error {
 }
 
 class SchemaError extends GenericError {}
+class OptionsError extends GenericError {}
 
 module.exports = {
   GenericError,
-  SchemaError
+  SchemaError,
+  OptionsError
 }
