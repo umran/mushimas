@@ -1,4 +1,4 @@
-const { OptionsError } = require('../errors') 
+const { OptionsError } = require('../errors')
 
 module.exports = (path, schemaKey, schemas) => {
   const paginatedFieldPattern = /^[a-z]+(?:\.[a-z]+)*$/i
