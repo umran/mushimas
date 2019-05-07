@@ -7,8 +7,12 @@ module.exports = (schemaKey, schemas, types, resolver) => {
   return new GraphQLObjectType({
     name: schemaKey,
     fields: () => Object.keys(fields).reduce((accumulator, fieldKey) => {
-      accumulator[fieldKey] = generateField(fieldKey, fields[fieldKey], schemas, types, resolver)
-
+      let generatedField = generateField(fieldKey, fields[fieldKey], schemas, types, resolver)
+      
+      if (generatedField) {
+        accumulator[fieldKey] = generatedField
+      }
+      
       return accumulator
 
     }, { _id: { type: GraphQLID } })
@@ -16,6 +20,14 @@ module.exports = (schemaKey, schemas, types, resolver) => {
 }
 
 const generateField = (fieldKey, field, schemas, types, resolver, inArray=false) => {
+  if (field.type === 'array') {
+    if (field.item.enabled === false) {
+      return null
+    }
+  } else if (field.enabled === false) {
+    return null
+  }
+
   switch(field.type) {
     case 'string':
       return generateStringField(field, inArray)

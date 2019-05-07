@@ -8,7 +8,8 @@
     "type",
     "ref",
     "required",
-    "es_indexed"
+    "es_indexed",
+    "enabled"
   ],
   "properties": {
     "type": {
@@ -31,6 +32,11 @@
       "$id": "#/properties/es_indexed",
       "type": "boolean",
       "title": "The EsIndexed Schema"
+    },
+    "enabled": {
+      "$id": "#/properties/enabled",
+      "type": "boolean",
+      "title": "The Enabled Schema"
     }
   },
   "additionalProperties": false

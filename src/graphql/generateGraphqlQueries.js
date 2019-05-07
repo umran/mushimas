@@ -41,7 +41,12 @@ const createFindField = (schemaKey, schemas, types, resolver) => {
   return {
     type: new GraphQLNonNull(types[schemaKey].resultsType),
     args: Object.keys(schemas[schemaKey].fields).reduce((accumulator, fieldKey) => {
-      accumulator[fieldKey] = generateArg(schemas[schemaKey].fields[fieldKey], schemas, types)
+      let generatedArg = generateArg(schemas[schemaKey].fields[fieldKey], schemas, types)
+
+      if (generatedArg) {
+        accumulator[fieldKey] = generatedArg
+      }
+      
       return accumulator
     }, { _id: { type: GraphQLID }, _options: { type: FindOptions } }),
     resolve: async (root, args, context) => {

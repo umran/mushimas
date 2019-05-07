@@ -106,6 +106,21 @@ const DummyRequired = {
       enabled: true,
       properties: Contact.properties
     },
+    contact_pummy: {
+      type: 'object',
+      enabled: true,
+      properties: Contact.properties
+    },
+    contact_scummy: {
+      type: 'object',
+      enabled: true,
+      properties: Contact.properties
+    },
+    contact_scrummy: {
+      type: 'object',
+      enabled: true,
+      properties: Contact.properties
+    },
     emails: {
       type: 'keyword',
       index: true

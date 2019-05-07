@@ -22,7 +22,12 @@ const createCreateField = (schemaKey, schemas, types, resolver) => {
   return {
     type: GraphQLID,
     args: Object.keys(schemas[schemaKey].fields).reduce((accumulator, fieldKey) => {
-      accumulator[fieldKey] = generateStrictArg(schemas[schemaKey].fields[fieldKey], schemas, types)
+      let generatedStrictArg = generateStrictArg(schemas[schemaKey].fields[fieldKey], schemas, types)
+
+      if (generatedStrictArg) {
+        accumulator[fieldKey] = generatedStrictArg
+      }
+
       return accumulator
     }, {}),
     resolve: async (root, args, context) => {
@@ -41,7 +46,12 @@ const createUpdateField = (schemaKey, schemas, types, resolver) => {
   return {
     type: GraphQLID,
     args: Object.keys(schemas[schemaKey].fields).reduce((accumulator, fieldKey) => {
-      accumulator[fieldKey] = generateArg(schemas[schemaKey].fields[fieldKey], schemas, types)
+      let generatedArg = generateArg(schemas[schemaKey].fields[fieldKey], schemas, types)
+
+      if (generatedArg) {
+        accumulator[fieldKey] = generatedArg
+      }
+
       return accumulator
     }, { _id: { type: new GraphQLNonNull(GraphQLID) } }),
     resolve: async (root, args, context) => {

@@ -40,7 +40,8 @@ describe('validateEmbedded()', () => {
             type: 'reference',
             required: true,
             es_indexed: true,
-            ref: 'b'
+            ref: 'b',
+            enabled: true
           }
         }
       },
@@ -51,7 +52,8 @@ describe('validateEmbedded()', () => {
             type: 'reference',
             required: true,
             es_indexed: true,
-            ref: 'c'
+            ref: 'c',
+            enabled: true
           }
         }
       },
@@ -65,7 +67,8 @@ describe('validateEmbedded()', () => {
               type: 'reference',
               required: true,
               es_indexed: true,
-              ref: 'a'
+              ref: 'a',
+              enabled: true
             }
           }
         }
@@ -88,7 +91,8 @@ describe('validateEmbedded()', () => {
             type: 'reference',
             required: true,
             es_indexed: true,
-            ref: 'b'
+            ref: 'b',
+            enabled: true
           }
         }
       },
@@ -99,7 +103,8 @@ describe('validateEmbedded()', () => {
             type: 'reference',
             required: true,
             es_indexed: true,
-            ref: 'c'
+            ref: 'c',
+            enabled: true
           }
         }
       },
@@ -110,7 +115,8 @@ describe('validateEmbedded()', () => {
             type: 'string',
             required: true,
             es_indexed: true,
-            es_keyword: false
+            es_keyword: false,
+            enabled: true
           }
         }
       }

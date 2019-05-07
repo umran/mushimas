@@ -7,7 +7,11 @@ module.exports = (schemaKey, schemas, types) => {
   return new GraphQLInputObjectType({
     name: `_${schemaKey}Input`,
     fields: () => Object.keys(fields).reduce((accumulator, fieldKey) => {
-      accumulator[fieldKey] = generateField(fields[fieldKey], schemas, types)
+      let generatedField = generateField(fields[fieldKey], schemas, types)
+      
+      if (generatedField) {
+        accumulator[fieldKey] = generatedField
+      }
 
       return accumulator
 
@@ -16,6 +20,14 @@ module.exports = (schemaKey, schemas, types) => {
 }
 
 const generateField = (field, schemas, types, inArray=false) => {
+  if (field.type === 'array') {
+    if (field.item.enabled === false) {
+      return null
+    }
+  } else if (field.enabled === false) {
+    return null
+  }
+
   switch(field.type) {
     case 'string':
       return generateStringField(field, inArray)

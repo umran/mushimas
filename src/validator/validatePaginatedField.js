@@ -25,6 +25,8 @@ module.exports = (path, schemaKey, schemas) => {
 
     if (field.type === 'array') {
       throw new Error('invalid path: path cannot have an array field')
+    } else if (field.enabled === false) {
+      throw new Error('invalid path: path cannot have a disabled field')
     }
 
     if (field.type === 'reference') {

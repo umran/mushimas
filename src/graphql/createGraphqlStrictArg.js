@@ -2,6 +2,14 @@ const { GraphQLNonNull, GraphQLID, GraphQLList, GraphQLString, GraphQLInt, Graph
 const { GraphQLDateTime } = require('graphql-iso-date')
 
 const generateArg = (field, schemas, types, inArray=false) => {
+  if (field.type === 'array') {
+    if (field.item.enabled === false) {
+      return null
+    }
+  } else if (field.enabled === false) {
+    return null
+  }
+  
   switch(field.type) {
     case 'string':
       return generateStringArg(field, inArray)

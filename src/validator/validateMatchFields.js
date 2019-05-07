@@ -24,9 +24,15 @@ const validateField = (path, schemaKey, schemas) => {
         throw new Error('invalid path: path cannot have an array as the terminal field where array item is not a terminal type')
       }
 
+      if (field.item.enabled === false) {
+        throw new Error('invalid path: path cannot have a disabled field')
+      }
+
       if (field.item.type === 'reference') {
         currentSchema = schemas[field.item.ref]
       }
+    } else if (field.enabled === false) {
+      throw new Error('invalid path: path cannot have a disabled field')
     }
 
     if (field.type === 'reference') {

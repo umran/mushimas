@@ -6,22 +6,26 @@ const Dummy = {
       type: "reference",
       required: false,
       ref: "Person",
-      es_indexed: true
+      es_indexed: true,
+      enabled: true
     },
     version: {
       type: "float",
       required: true,
-      es_indexed: true
+      es_indexed: true,
+      enabled: true
     },
     date: {
       type: "date",
       required: true,
-      es_indexed: true
+      es_indexed: true,
+      enabled: true
     },
     residential: {
       type: "boolean",
       required: true,
-      es_indexed: true
+      es_indexed: true,
+      enabled: true
     }
   }
 }
@@ -33,13 +37,36 @@ const DummyRequired = {
       type: "reference",
       required: true,
       ref: "Contact",
-      es_indexed: true
+      es_indexed: true,
+      enabled: true
     },
     contact_dummy: {
       type: "reference",
       required: false,
       ref: "Contact",
-      es_indexed: true
+      es_indexed: true,
+      enabled: true
+    },
+    contact_pummy: {
+      type: "reference",
+      required: false,
+      ref: "Contact",
+      es_indexed: true,
+      enabled: false
+    },
+    contact_scummy: {
+      type: "reference",
+      required: true,
+      ref: "Contact",
+      es_indexed: true,
+      enabled: false
+    },
+    contact_scrummy: {
+      type: "reference",
+      required: true,
+      ref: "Contact",
+      es_indexed: true,
+      enabled: true
     },
     contacts: {
       type: "array",
@@ -48,7 +75,8 @@ const DummyRequired = {
         type: "reference",
         required: true,
         ref: "Contact",
-        es_indexed: true
+        es_indexed: true,
+        enabled: true
       }
     },
     persons: {
@@ -58,7 +86,19 @@ const DummyRequired = {
         type: "reference",
         required: true,
         ref: "Person",
-        es_indexed: true
+        es_indexed: true,
+        enabled: true
+      }
+    },
+    dersons: {
+      type: "array",
+      required: true,
+      item: {
+        type: "reference",
+        required: true,
+        ref: "Person",
+        es_indexed: true,
+        enabled: false
       }
     },
     emails: {
@@ -68,7 +108,8 @@ const DummyRequired = {
         type: "string",
         required: true,
         es_indexed: true,
-        es_keyword: true
+        es_keyword: true,
+        enabled: true
       }
     },
     phones: {
@@ -77,7 +118,8 @@ const DummyRequired = {
       item: {
         type: "integer",
         required: false,
-        es_indexed: true
+        es_indexed: true,
+        enabled: true
       }
     },
     versions: {
@@ -86,7 +128,8 @@ const DummyRequired = {
       item: {
         type: "float",
         required: false,
-        es_indexed: true
+        es_indexed: true,
+        enabled: true
       }
     },
     dates: {
@@ -95,7 +138,8 @@ const DummyRequired = {
       item: {
         type: "date",
         required: false,
-        es_indexed: true
+        es_indexed: true,
+        enabled: true
       }
     },
     residentials: {
@@ -104,7 +148,8 @@ const DummyRequired = {
       item: {
         type: "boolean",
         required: false,
-        es_indexed: true
+        es_indexed: true,
+        enabled: true
       }
     }
   }
@@ -116,39 +161,46 @@ const Contact = {
     phone: {
       type: "integer",
       required: true,
-      es_indexed: true
+      es_indexed: true,
+      enabled: true
     },
     email: {
       type: "string",
       required: true,
       es_indexed: true,
-      es_keyword: true
+      es_keyword: true,
+      enabled: true
     },
     phone_secondary: {
       type: "integer",
       required: false,
-      es_indexed: true
+      es_indexed: true,
+      enabled: true
     },
     email_secondary: {
       type: "string",
       required: false,
       es_indexed: true,
-      es_keyword: true
+      es_keyword: true,
+      enabled: true
     },
     version: {
       type: "float",
       required: false,
-      es_indexed: true
+      es_indexed: true,
+      enabled: true
     },
     date_added: {
       type: "date",
       required: false,
-      es_indexed: true
+      es_indexed: true,
+      enabled: true
     },
     residential: {
       type: "boolean",
       required: false,
-      es_indexed: true
+      es_indexed: true,
+      enabled: true
     }
   }
 }
@@ -160,51 +212,60 @@ const Person = {
       type: "string",
       required: true,
       es_indexed: true,
-      es_keyword: false
+      es_keyword: false,
+      enabled: true
     },
     name_secondary: {
       type: "string",
       required: false,
       es_indexed: true,
-      es_keyword: false
+      es_keyword: false,
+      enabled: true
     },
     clearance: {
       type: "integer",
       required: false,
-      es_indexed: true
+      es_indexed: true,
+      enabled: true
     },
     temperature: {
       type: "float",
       required: false,
-      es_indexed: true
+      es_indexed: true,
+      enabled: true
     },
     contractor: {
       type: "boolean",
       required: false,
-      es_indexed: true
+      es_indexed: true,
+      enabled: true
     },
     conscription_date: {
       type: "date",
       required: false,
-      es_indexed: true
+      es_indexed: true,
+      enabled: true
     },
     contact: {
       type: "reference",
       required: true,
       ref: "Contact",
-      es_indexed: true
+      es_indexed: true,
+      enabled: true
     },
     contact_secondary: {
       type: "reference",
       required: false,
       ref: "Contact",
-      es_indexed: true
+      es_indexed: true,
+      enabled: true
     },
     alias_of: {
       type: "reference",
       required: false,
       ref: "Person",
-      es_indexed: false
+      es_indexed: false,
+      enabled: true
     },
     doctors: {
       type: "array",
@@ -213,7 +274,8 @@ const Person = {
         type: "reference",
         required: false,
         ref: "Person",
-        es_indexed: false
+        es_indexed: false,
+        enabled: true
       }
     }
   }
@@ -226,33 +288,38 @@ const Address = {
       type: "string",
       required: true,
       es_indexed: true,
-      es_keyword: false
+      es_keyword: false,
+      enabled: true
     },
     line_2: {
       type: "string",
       required: false,
       es_indexed: true,
-      es_keyword: false
+      es_keyword: false,
+      enabled: true
     },
     city: {
       type: "string",
       required: true,
       es_indexed: true,
       es_keyword: false,
-      enum: ["Vancouver", "Abbotsford"]
+      enum: ["Vancouver", "Abbotsford"],
+      enabled: true
     },
     postal_code: {
       type: "string",
       required: true,
       es_indexed: true,
-      es_keyword: true
+      es_keyword: true,
+      enabled: true
     },
     province: {
       type: "string",
       required: true,
       es_indexed: true,
       es_keyword: false,
-      default: "BC"
+      default: "BC",
+      enabled: true
     }
   }
 }
@@ -264,19 +331,22 @@ const Parent = {
       type: "reference",
       required: true,
       ref: "Dummy",
-      es_indexed: true
+      es_indexed: true,
+      enabled: true
     },
     dummy_required: {
       type: "reference",
       required: true,
       ref: "DummyRequired",
-      es_indexed: true
+      es_indexed: true,
+      enabled: true
     },
     name: {
       type: "string",
       required: true,
       es_indexed: true,
-      es_keyword: false
+      es_keyword: false,
+      enabled: true
     },
     tags: {
       type: "array",
@@ -286,14 +356,16 @@ const Parent = {
         // the required flag in the item object is ignored by mongoose, but is useful for graphql
         required: true,
         es_indexed: true,
-        es_keyword: true
+        es_keyword: true,
+        enabled: true
       }
     },
     age: {
       type: "integer",
       required: true,
       es_indexed: true,
-      enum: [65, 40]
+      enum: [65, 40],
+      enabled: true
     },
     favourite_ages: {
       type: "array",
@@ -302,13 +374,15 @@ const Parent = {
         type: "integer",
         // the required flag in the item object is ignored by mongoose, but is useful for graphql
         required: true,
-        es_indexed: true
+        es_indexed: true,
+        enabled: true
       }
     },
     number: {
       type: "float",
       required: true,
       es_indexed: true,
+      enabled: true
     },
     favourite_numbers: {
       type: "array",
@@ -318,14 +392,16 @@ const Parent = {
         // the required flag in the item object is ignored by mongoose, but is useful for graphql
         required: true,
         es_indexed: true,
-        default: 0
+        default: 0,
+        enabled: true
       }
     },
     isAmerican: {
       type: "boolean",
       required: true,
       es_indexed: true,
-      default: true
+      default: true,
+      enabled: true
     },
     answers: {
       type: "array",
@@ -334,20 +410,23 @@ const Parent = {
         type: "boolean",
         // the required flag in the item object is ignored by mongoose, but is useful for graphql
         required: true,
-        es_indexed: true
+        es_indexed: true,
+        enabled: true
       }
     },
     start: {
       type: "date",
       required: true,
       es_indexed: true,
-      default: 'current_date'
+      default: 'current_date',
+      enabled: true
     },
     end: {
       type: "date",
       required: true,
       es_indexed: true,
-      default: '2019-08-28T07:15:19+0000'
+      default: '2019-08-28T07:15:19+0000',
+      enabled: true
     },
     starts: {
       type: "array",
@@ -356,7 +435,8 @@ const Parent = {
         type: "date",
         // the required flag in the item object is ignored by mongoose, but is useful for graphql
         required: true,
-        es_indexed: true
+        es_indexed: true,
+        enabled: true
       }
     },
     spouse: {
@@ -364,7 +444,8 @@ const Parent = {
       required: false,
       ref: "Person",
       // for the reference and array types, the es_indexed field determines whether the underlying object should be indexed according to the index and anlyzer options specified in the object
-      es_indexed: true
+      es_indexed: true,
+      enabled: true
     },
     friends: {
       type: "array",
@@ -375,7 +456,8 @@ const Parent = {
         required: true,
         ref: "Person",
         // for the reference and array types, the es_indexed field determines whether the underlying object should be indexed according to the index and anlyzer options specified in the object
-        es_indexed: true
+        es_indexed: true,
+        enabled: true
       }
     },
     contact: {
@@ -383,7 +465,8 @@ const Parent = {
       required: true,
       ref: "Contact",
       // for the reference and array types, the es_indexed field determines whether the underlying object should be indexed according to the index and anlyzer options specified in the object
-      es_indexed: true
+      es_indexed: true,
+      enabled: true
     },
     // a second reference to the same schema is added here to cover additional branches during testing
     otherContact: {
@@ -391,7 +474,8 @@ const Parent = {
       required: true,
       ref: "Contact",
       // for the reference and array types, the es_indexed field determines whether the underlying object should be indexed according to the index and anlyzer options specified in the object
-      es_indexed: true
+      es_indexed: true,
+      enabled: true
     },
     addresses: {
       type: "array",
@@ -402,7 +486,8 @@ const Parent = {
         required: true,
         ref: "Address",
         // for the reference and array types, the es_indexed field determines whether the underlying object should be indexed according to the index and anlyzer options specified in the object
-        es_indexed: true
+        es_indexed: true,
+        enabled: true
       }
     }
   }
