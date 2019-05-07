@@ -213,7 +213,7 @@ const Person = {
       required: true,
       es_indexed: true,
       es_keyword: false,
-      enabled: true
+      enabled: false
     },
     name_secondary: {
       type: "string",
@@ -275,7 +275,7 @@ const Person = {
         required: false,
         ref: "Person",
         es_indexed: false,
-        enabled: true
+        enabled: false
       }
     }
   }
