@@ -21,7 +21,7 @@ const validate = ajv.addSchema([arraySchema, booleanSchema, dateSchema, floatSch
 module.exports = schemas => {
   Object.keys(schemas).forEach(schemaKey => {
     if(!validate(schemas[schemaKey])) {
-      throw new SchemaError(`validationError, the following schema: ${schemaKey} is invalid. Please check that it conforms to the specification described at https://irukandjilabs.com/apify/spec.`)
+      throw new SchemaError('validationError', `the following schema: ${schemaKey} is invalid. Please check that it conforms to the specification described at https://irukandjilabs.com/apify/spec.`)
     }
   })
 

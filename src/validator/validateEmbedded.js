@@ -38,7 +38,7 @@ const iterate = (remainingKeys, dependencies, foundations=[]) => {
   }
 
   if (remainingKeys.length > 0) {
-    throw new SchemaError('embeddedCircularRelationship')
+    throw new SchemaError('embeddedCircularRelationship', 'there is at least one circular relationship between embedded schemas')
   }
 }
 
