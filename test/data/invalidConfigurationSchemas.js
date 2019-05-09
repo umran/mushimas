@@ -5,8 +5,8 @@ const PersonSchema = {
     name: {
       type: "string",
       required: true,
+      enabled: true,
       es_indexed: true,
-      es_analyzed: true,
       es_keyword: false,
       invalid_additional_property: true
     }
