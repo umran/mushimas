@@ -1,4 +1,4 @@
-const { validateSchemas, validateEmbedded } = require('./validator')
+const { validateSchemas, validateReferences, validateEmbedded } = require('./validator')
 const mongoose = require('./mongoose')
 const elasticsearch = require('./elasticsearch')
 const { generateSignature } = require('mushimas-crypto')
@@ -6,6 +6,7 @@ const { generateSignature } = require('mushimas-crypto')
 module.exports = (schemas, dedicated) => {
   // validate schemas
   validateSchemas(schemas)
+  validateReferences(schemas)
   validateEmbedded(schemas)
 
   // generate mongoose schemas and models if dedicated is set to true

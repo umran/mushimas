@@ -1,4 +1,5 @@
 exports.validateSchema = require('./validateSchema')
 exports.validateSchemas = require('./validateSchemas')
+exports.validateReferences = require('./validateReferences')
 exports.validateEmbedded = require('./validateEmbedded')
 exports.validateOptions = require('./validateOptions')
