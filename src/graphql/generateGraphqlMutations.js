@@ -11,6 +11,8 @@ module.exports = (schemas, types, resolver) => {
         accumulator[`create_${schemaKey}`] = createCreateField(schemaKey, schemas, types, resolver)
         accumulator[`update_${schemaKey}`] = createUpdateField(schemaKey, schemas, types, resolver)
         accumulator[`delete_${schemaKey}`] = createDeleteField(schemaKey, resolver)
+        accumulator[`publish_${schemaKey}`] = createPublishField(schemaKey, resolver)
+        accumulator[`archive_${schemaKey}`] = createArchiveField(schemaKey, resolver)
       }
 
       return accumulator
@@ -77,6 +79,46 @@ const createDeleteField = (schemaKey, resolver) => {
     resolve: async (root, args, context) => {
       return await resolver({
         method: 'delete',
+        collection: schemaKey,
+        root,
+        args,
+        context
+      })
+    }
+  }
+}
+
+const createPublishField = (schemaKey, resolver) => {
+  return {
+    type: GraphQLID,
+    args: {
+      _id: {
+        type: new GraphQLNonNull(GraphQLID)
+      }
+    },
+    resolve: async (root, args, context) => {
+      return await resolver({
+        method: 'publish',
+        collection: schemaKey,
+        root,
+        args,
+        context
+      })
+    }
+  }
+}
+
+const createArchiveField = (schemaKey, resolver) => {
+  return {
+    type: GraphQLID,
+    args: {
+      _id: {
+        type: new GraphQLNonNull(GraphQLID)
+      }
+    },
+    resolve: async (root, args, context) => {
+      return await resolver({
+        method: 'archive',
         collection: schemaKey,
         root,
         args,
