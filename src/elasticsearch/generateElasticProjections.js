@@ -12,6 +12,8 @@ const generateProjections = (schemaKey, schemas) => {
   return Object.keys(schemas[schemaKey].fields).reduce((accumulator, fKey) => {
     if (!(schemas[schemaKey].fields[fKey].type === 'reference' && schemas[schemaKey].fields[fKey].ref === schemaKey)
       && !(schemas[schemaKey].fields[fKey].type === 'array' && schemas[schemaKey].fields[fKey].item.type === 'reference' && schemas[schemaKey].fields[fKey].item.ref === schemaKey)
+      && !(schemas[schemaKey].fields[fKey].type === 'reference' && schemas[schemas[schemaKey].fields[fKey].ref].class === 'collection')
+      && !(schemas[schemaKey].fields[fKey].type === 'array' && schemas[schemaKey].fields[fKey].item.type === 'reference' && schemas[schemas[schemaKey].fields[fKey].item.ref].class === 'collection')
     ) {
       accumulator[fKey] = 1
     }

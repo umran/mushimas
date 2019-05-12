@@ -66,14 +66,13 @@ const schemas = {
 }
 
 describe('generateElasticProjections', () => {
-  it('should generate all collection documents, projecting all fields except self referential fields', () => {
+  it('should generate all collection documents, projecting all fields except self referential fields and fields with collection references and fields with collection array references', () => {
     let projections = generateElasticProjections(schemas)
 
     expect(projections).to.deep.equal({
       person: {
         name: 1,
-        contact: 1,
-        address: 1
+        contact: 1
       },
       address: {
         line_1: 1
