@@ -21,13 +21,6 @@ const FindOptions = new GraphQLInputObjectType({
   }
 })
 
-const FindOneOptions = new GraphQLInputObjectType({
-  name: '_FindOneOptions',
-  fields: {
-    // no options needed as of right now
-  }
-})
-
 const SearchOptions = new GraphQLInputObjectType({
   name: '_SearchOptions',
   fields: {
@@ -54,6 +47,5 @@ const SearchOptions = new GraphQLInputObjectType({
 
 module.exports = {
   FindOptions,
-  FindOneOptions,
   SearchOptions
 }
