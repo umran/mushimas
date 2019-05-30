@@ -1,5 +1,6 @@
 const expect = require('chai').expect
 const buildBackend = require('../src/buildBackend')
+const { BuildError } = require('../src/errors')
 const data = require('./data').buildBackend
 
 const mongoose = require('mongoose')
@@ -13,15 +14,37 @@ describe('buildBackend()', () => {
 
     const configurationSchemas = data.configurationSchemas
 
+    const backend_shared = buildBackend(configurationSchemas, 'SHARED')
 
-    const backend = buildBackend(configurationSchemas, false)
+    expect(backend_shared).to.have.own.property('mongoose_models')
+    expect(backend_shared).to.have.own.property('elastic_mappings')
+    expect(backend_shared).to.have.own.property('elastic_projections')
+    expect(backend_shared).to.have.own.property('signature')
 
+    const backend_dedicated = buildBackend(configurationSchemas, 'DEDICATED')
 
-    expect(backend).to.have.own.property('mongoose_models')
-    expect(backend).to.have.own.property('elastic_mappings')
-    expect(backend).to.have.own.property('elastic_projections')
-    expect(backend).to.have.own.property('signature')
+    expect(backend_dedicated).to.have.own.property('mongoose_models')
+    expect(backend_dedicated).to.have.own.property('elastic_mappings')
+    expect(backend_dedicated).to.have.own.property('elastic_projections')
+    expect(backend_dedicated).to.have.own.property('signature')
 
+    const backend_dedicated_search = buildBackend(configurationSchemas, 'DEDICATED_SEARCH')
+
+    expect(backend_dedicated_search).to.have.own.property('mongoose_models')
+    expect(backend_dedicated_search).to.have.own.property('elastic_mappings')
+    expect(backend_dedicated_search).to.have.own.property('elastic_projections')
+    expect(backend_dedicated_search).to.have.own.property('signature')
+
+  })
+
+  it('should throw a BuildError with code unrecognizedMode when an unfamiliar mode is provided', () => {
+    const configurationSchemas = data.configurationSchemas
+
+    const test = () => {
+      buildBackend(configurationSchemas, 'BOGUS_MODE')
+    }
+
+    expect(test).to.throw(BuildError, /^unrecognizedMode/)
   })
 
 })
