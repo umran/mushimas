@@ -4,22 +4,21 @@ const elasticsearch = require('./elasticsearch')
 const { generateSignature } = require('mushimas-crypto')
 
 module.exports = (schemas, dedicated) => {
-  // validate schemas
-  validateSchemas(schemas)
-  validateReferences(schemas)
-  validateEmbedded(schemas)
-
-  // generate mongoose schemas and models if dedicated is set to true
+  // generate mongoose schemas and models and elasticsearch mappings only in dedicated mode
   let mongooseSchemas
   let mongooseModels
+  let elasticMappings
 
   if (dedicated === true) {
+    // we validate the schemas only in dedicated mode because we assume schemas are prevalidated otherwise
+    validateSchemas(schemas)
+    validateReferences(schemas)
+    validateEmbedded(schemas)
+
     mongooseSchemas = mongoose.generateMongooseSchemas(schemas)
     mongooseModels = mongoose.generateMongooseModels(schemas, mongooseSchemas)
+    elasticMappings = elasticsearch.generateElasticMappings(schemas)
   }
-
-  // generate type mappings for search indexing
-  const elasticMappings = elasticsearch.generateElasticMappings(schemas)
 
   // generate projections necessary for search indexing
   const elasticProjections = elasticsearch.generateElasticProjections(schemas)
