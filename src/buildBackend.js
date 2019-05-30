@@ -14,11 +14,6 @@ module.exports = (schemas, mode) => {
       // nothing specific needs to be done for a shared instance
       break
 
-    case 'DEDICATED_SEARCH':
-      // only elastic mappings are generated in dedicated search mode
-      elasticMappings = elasticsearch.generateElasticMappings(schemas)
-      break
-
     case 'DEDICATED':
       // we validate the schemas only in dedicated mode because we assume schemas are prevalidated otherwise
       validateSchemas(schemas)

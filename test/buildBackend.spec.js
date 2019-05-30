@@ -28,13 +28,6 @@ describe('buildBackend()', () => {
     expect(backend_dedicated).to.have.own.property('elastic_projections')
     expect(backend_dedicated).to.have.own.property('signature')
 
-    const backend_dedicated_search = buildBackend(configurationSchemas, 'DEDICATED_SEARCH')
-
-    expect(backend_dedicated_search).to.have.own.property('mongoose_models')
-    expect(backend_dedicated_search).to.have.own.property('elastic_mappings')
-    expect(backend_dedicated_search).to.have.own.property('elastic_projections')
-    expect(backend_dedicated_search).to.have.own.property('signature')
-
   })
 
   it('should throw a BuildError with code unrecognizedMode when an unfamiliar mode is provided', () => {
