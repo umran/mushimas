@@ -1,5 +1,5 @@
 const { GraphQLObjectType, GraphQLID, GraphQLNonNull, GraphQLString } = require('graphql')
-const { FindOptions, SearchOptions } = require('./staticGraphqlInputTypes')
+const { FindOptions, FindOneOptions, SearchOptions } = require('./staticGraphqlInputTypes')
 const generateArg = require('./createGraphqlArg')
 
 module.exports = (schemas, types, resolver) => {
@@ -23,6 +23,9 @@ const createFindOneField = (schemaKey, types, resolver) => {
     args: {
       _id: {
         type: new GraphQLNonNull(GraphQLID)
+      },
+      _options: {
+        type: FindOneOptions
       }
     },
     resolve: async (root, args, context) => {

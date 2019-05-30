@@ -1,7 +1,7 @@
 const { GraphQLObjectType, GraphQLString, GraphQLID } = require('graphql')
 
-const mutationResultType = new GraphQLObjectType({
-  name: 'mutationResult',
+const MutationResultType = new GraphQLObjectType({
+  name: '_MutationResult',
   fields: () => ({
     status: {
       type: GraphQLString
@@ -15,4 +15,4 @@ const mutationResultType = new GraphQLObjectType({
   })
 })
 
-module.exports = mutationResultType
+module.exports = MutationResultType

@@ -2,7 +2,7 @@ const { GraphQLObjectType, GraphQLID, GraphQLNonNull } = require('graphql')
 const { FindOptions, SearchOptions } = require('./staticGraphqlInputTypes')
 const generateArg = require('./createGraphqlArg')
 const generateStrictArg = require('./createGraphqlStrictArg')
-const mutationResultType = require('./mutationResultType')
+const MutationResultType = require('./mutationResultType')
 
 module.exports = (schemas, types, resolver) => {
   return new GraphQLObjectType({
@@ -23,7 +23,7 @@ module.exports = (schemas, types, resolver) => {
 
 const createCreateField = (schemaKey, schemas, types, resolver) => {
   return {
-    type: mutationResultType,
+    type: MutationResultType,
     args: Object.keys(schemas[schemaKey].fields).reduce((accumulator, fieldKey) => {
       let generatedStrictArg = generateStrictArg(schemas[schemaKey].fields[fieldKey], schemas, types)
 
@@ -47,7 +47,7 @@ const createCreateField = (schemaKey, schemas, types, resolver) => {
 
 const createUpdateField = (schemaKey, schemas, types, resolver) => {
   return {
-    type: mutationResultType,
+    type: MutationResultType,
     args: Object.keys(schemas[schemaKey].fields).reduce((accumulator, fieldKey) => {
       let generatedArg = generateArg(schemas[schemaKey].fields[fieldKey], schemas, types)
 
@@ -71,7 +71,7 @@ const createUpdateField = (schemaKey, schemas, types, resolver) => {
 
 const createDeleteField = (schemaKey, resolver) => {
   return {
-    type: mutationResultType,
+    type: MutationResultType,
     args: {
       _id: {
         type: new GraphQLNonNull(GraphQLID)
@@ -91,7 +91,7 @@ const createDeleteField = (schemaKey, resolver) => {
 
 const createPublishField = (schemaKey, resolver) => {
   return {
-    type: mutationResultType,
+    type: MutationResultType,
     args: {
       _id: {
         type: new GraphQLNonNull(GraphQLID)
@@ -111,7 +111,7 @@ const createPublishField = (schemaKey, resolver) => {
 
 const createArchiveField = (schemaKey, resolver) => {
   return {
-    type: mutationResultType,
+    type: MutationResultType,
     args: {
       _id: {
         type: new GraphQLNonNull(GraphQLID)

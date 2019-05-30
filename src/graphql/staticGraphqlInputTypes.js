@@ -17,6 +17,18 @@ const FindOptions = new GraphQLInputObjectType({
     },
     cursor: {
       type: GraphQLString
+    },
+    includeArchived: {
+      type: GraphQLBoolean
+    }
+  }
+})
+
+const FindOneOptions = new GraphQLInputObjectType({
+  name: '_FindOneOptions',
+  fields: {
+    includeArchived: {
+      type: GraphQLBoolean
     }
   }
 })
@@ -41,11 +53,15 @@ const SearchOptions = new GraphQLInputObjectType({
     },
     matchFields: {
       type: new GraphQLList(GraphQLString)
-    } 
+    },
+    includeArchived: {
+      type: GraphQLBoolean
+    }
   }
 })
 
 module.exports = {
   FindOptions,
+  FindOneOptions,
   SearchOptions
 }
