@@ -5,7 +5,7 @@ const Contact = {
   properties: {
     phone: {
       type: 'integer',
-      index: true
+      index: false
     },
     email: {
       type: 'keyword',
@@ -156,7 +156,7 @@ const Address = {
     },
     city: {
       type: 'text',
-      index: true
+      index: false
     },
     postal_code: {
       type: 'keyword',
@@ -215,7 +215,7 @@ const Parent = {
 
     favourite_numbers: {
       type: 'float',
-      index: true
+      index: false
     },
 
     // boolean field
@@ -227,7 +227,7 @@ const Parent = {
     // boolean array field
     answers: {
       type: 'boolean',
-      index: true
+      index: false
     },
 
     // date field
@@ -238,7 +238,7 @@ const Parent = {
 
     end: {
       type: 'date',
-      index: true
+      index: false
     },
 
     // date array field
@@ -256,7 +256,7 @@ const Parent = {
 
     otherContact: {
       type: 'object',
-      enabled: true,
+      enabled: false,
       properties: Contact.properties
     },
 

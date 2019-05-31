@@ -161,7 +161,8 @@ const Contact = {
     phone: {
       type: "integer",
       required: true,
-      es_indexed: true,
+      // false es_indexed case
+      es_indexed: false,
       enabled: true
     },
     email: {
@@ -174,7 +175,7 @@ const Contact = {
     phone_secondary: {
       type: "integer",
       required: false,
-      es_indexed: true,
+      // undefined es_indexed case
       enabled: true
     },
     email_secondary: {
@@ -287,8 +288,8 @@ const Address = {
     line_1: {
       type: "string",
       required: true,
-      es_indexed: true,
-      es_keyword: false,
+      // undefined es_indexed case
+      // undefined es_keyword case
       enabled: true
     },
     line_2: {
@@ -301,7 +302,8 @@ const Address = {
     city: {
       type: "string",
       required: true,
-      es_indexed: true,
+      // false es_indexed case
+      es_indexed: false,
       es_keyword: false,
       enum: ["Vancouver", "Abbotsford"],
       enabled: true
@@ -381,7 +383,7 @@ const Parent = {
     number: {
       type: "float",
       required: true,
-      es_indexed: true,
+      // undefined es_indexed case
       enabled: true
     },
     favourite_numbers: {
@@ -391,7 +393,8 @@ const Parent = {
         type: "float",
         // the required flag in the item object is ignored by mongoose, but is useful for graphql
         required: true,
-        es_indexed: true,
+        // false es_indexed case
+        es_indexed: false,
         default: 0,
         enabled: true
       }
@@ -399,7 +402,7 @@ const Parent = {
     isAmerican: {
       type: "boolean",
       required: true,
-      es_indexed: true,
+      // undefined es_indexed case
       default: true,
       enabled: true
     },
@@ -410,21 +413,23 @@ const Parent = {
         type: "boolean",
         // the required flag in the item object is ignored by mongoose, but is useful for graphql
         required: true,
-        es_indexed: true,
+        // false es_indexed case
+        es_indexed: false,
         enabled: true
       }
     },
     start: {
       type: "date",
       required: true,
-      es_indexed: true,
+      // undefined es_indexed case
       default: 'current_date',
       enabled: true
     },
     end: {
       type: "date",
       required: true,
-      es_indexed: true,
+      // false es_indexed case
+      es_indexed: false,
       default: '2019-08-28T07:15:19+0000',
       enabled: true
     },
@@ -465,7 +470,7 @@ const Parent = {
       required: true,
       ref: "Contact",
       // for the reference and array types, the es_indexed field determines whether the underlying object should be indexed according to the index and anlyzer options specified in the object
-      es_indexed: true,
+      // undefined es_indexed case
       enabled: true
     },
     // a second reference to the same schema is added here to cover additional branches during testing
@@ -474,7 +479,8 @@ const Parent = {
       required: true,
       ref: "Contact",
       // for the reference and array types, the es_indexed field determines whether the underlying object should be indexed according to the index and anlyzer options specified in the object
-      es_indexed: true,
+      // false es_indexed case
+      es_indexed: false,
       enabled: true
     },
     addresses: {
