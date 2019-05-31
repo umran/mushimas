@@ -3,9 +3,6 @@ const { GraphQLInputObjectType, GraphQLBoolean, GraphQLString, GraphQLInt, Graph
 const FindOptions = new GraphQLInputObjectType({
   name: '_FindOptions',
   fields: {
-    paginate: {
-      type: GraphQLBoolean
-    },
     paginatedField: {
       type: GraphQLString
     },
@@ -24,23 +21,11 @@ const FindOptions = new GraphQLInputObjectType({
 const SearchOptions = new GraphQLInputObjectType({
   name: '_SearchOptions',
   fields: {
-    paginate: {
-      type: GraphQLBoolean
-    },
-    paginatedField: {
-      type: GraphQLString
-    },
-    sortDirection: {
-      type: GraphQLInt
-    },
     limit: {
       type: GraphQLInt
     },
     cursor: {
       type: GraphQLString
-    },
-    matchFields: {
-      type: new GraphQLList(GraphQLString)
     }
   }
 })
