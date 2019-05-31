@@ -5,7 +5,6 @@ const { generateSignature } = require('mushimas-crypto')
 const { BuildError } = require('./errors')
 
 module.exports = (schemas, mode) => {
-  let mongooseSchemas
   let mongooseModels
   let elasticMappings
 
@@ -21,7 +20,7 @@ module.exports = (schemas, mode) => {
       validateEmbedded(schemas)
 
       // mongoose schemas and models and elastic mappings are all generated in dedicated mode
-      mongooseSchemas = mongoose.generateMongooseSchemas(schemas)
+      const mongooseSchemas = mongoose.generateMongooseSchemas(schemas)
       mongooseModels = mongoose.generateMongooseModels(schemas, mongooseSchemas)
       elasticMappings = elasticsearch.generateElasticMappings(schemas)
       break
@@ -30,16 +29,12 @@ module.exports = (schemas, mode) => {
       throw new BuildError('unrecognizedMode', 'the mode specified is not one that Mushimas recognizes')
   }
 
-  // generate projections necessary for search indexing
-  const elasticProjections = elasticsearch.generateElasticProjections(schemas)
-
   // generate signature
   const signature = generateSignature(schemas)
 
   return {
     mongoose_models: mongooseModels,
     elastic_mappings: elasticMappings,
-    elastic_projections: elasticProjections,
     signature
   }
 }

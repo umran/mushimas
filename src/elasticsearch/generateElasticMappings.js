@@ -43,36 +43,36 @@ const generateField = (field, schemas, generatedMappings) => {
 
 const generateStringField = field => {
   return {
-    type: field.es_keyword ? 'keyword' : 'text',
-    index: field.es_indexed
+    type: field.es_keyword === true ? 'keyword' : 'text',
+    index: field.es_indexed === false ? false : true
   }
 }
 
 const generateIntegerField = field => {
   return {
     type: 'integer',
-    index: field.es_indexed
+    index: field.es_indexed === false ? false : true
   }
 }
 
 const generateFloatField = field => {
   return {
     type: 'float',
-    index: field.es_indexed
+    index: field.es_indexed === false ? false : true
   }
 }
 
 const generateBooleanField = field => {
   return {
     type: 'boolean',
-    index: field.es_indexed
+    index: field.es_indexed === false ? false : true
   }
 }
 
 const generateDateField = field => {
   return {
     type: 'date',
-    index: field.es_indexed
+    index: field.es_indexed === false ? false : true
   }
 }
 
@@ -84,7 +84,7 @@ const generateReferenceField = (field, schemas, generatedMappings) => {
 
   return {
     type: 'object',
-    enabled: field.es_indexed,
+    enabled: field.es_indexed === false ? false : true,
     properties: generatedMappings[field.ref]().properties
   }
 }

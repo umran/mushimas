@@ -18,14 +18,12 @@ describe('buildBackend()', () => {
 
     expect(backend_shared).to.have.own.property('mongoose_models')
     expect(backend_shared).to.have.own.property('elastic_mappings')
-    expect(backend_shared).to.have.own.property('elastic_projections')
     expect(backend_shared).to.have.own.property('signature')
 
     const backend_dedicated = buildBackend(configurationSchemas, 'DEDICATED')
 
     expect(backend_dedicated).to.have.own.property('mongoose_models')
     expect(backend_dedicated).to.have.own.property('elastic_mappings')
-    expect(backend_dedicated).to.have.own.property('elastic_projections')
     expect(backend_dedicated).to.have.own.property('signature')
 
   })

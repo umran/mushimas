@@ -7,8 +7,6 @@
   "required": [
     "type",
     "required",
-    "es_indexed",
-    "es_keyword",
     "enabled"
   ],
   "properties": {
