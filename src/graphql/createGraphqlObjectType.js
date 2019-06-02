@@ -108,6 +108,11 @@ const generateReferenceField = (fieldKey, field, schemas, types, resolver, inArr
 
   if (schemas[field.ref].class === 'collection') {
     result.resolve = async (root, args, context) => {
+      if (typeof root[fieldKey] === 'undefined') {
+        console.log('null root field detected')
+        return null
+      }
+
       args = { ...args, _id: root[fieldKey] }
 
       return await resolver({
@@ -130,6 +135,11 @@ const generateArrayField = (fieldKey, field, schemas, types, resolver) => {
 
   if (field.item.type === 'reference' && schemas[field.item.ref].class === 'collection') {
     result.resolve = async (root, args, context) => {
+      if (typeof root[fieldKey] === 'undefined') {
+        console.log('null root field detected')
+        return null
+      }
+
       args = { ...args, _id: { $in: root[fieldKey] }, _options: { pagination: false } }
 
       let body = await resolver({
