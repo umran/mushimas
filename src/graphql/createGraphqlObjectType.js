@@ -135,7 +135,7 @@ const generateArrayField = (fieldKey, field, schemas, types, resolver) => {
 
   if (field.item.type === 'reference' && schemas[field.item.ref].class === 'collection') {
     result.resolve = async (root, args, context) => {
-      if (typeof root[fieldKey] === 'undefined') {
+      if (typeof root[fieldKey] === 'undefined' || root[fieldKey].length === 0) {
         console.log('null root field detected')
         return null
       }
