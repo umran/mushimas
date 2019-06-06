@@ -4,6 +4,13 @@ const { GraphQLDateTime } = require('graphql-iso-date')
 module.exports = (schemaKey, schemas, types, resolver) => {
   const fields = schemas[schemaKey].fields
 
+  const staticFields = {
+    _id: { type: GraphQLID },
+    '@state': { type: GraphQLString },
+    '@draftPublished': { type: GraphQLBoolean },
+    '@lastModified': { type: GraphQLDateTime }
+  }
+
   return new GraphQLObjectType({
     name: schemaKey,
     fields: () => Object.keys(fields).reduce((accumulator, fieldKey) => {
@@ -15,7 +22,7 @@ module.exports = (schemaKey, schemas, types, resolver) => {
       
       return accumulator
 
-    }, { _id: { type: GraphQLID } })
+    }, staticFields)
   })
 }
 
