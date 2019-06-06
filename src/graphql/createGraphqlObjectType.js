@@ -6,9 +6,9 @@ module.exports = (schemaKey, schemas, types, resolver) => {
 
   const staticFields = {
     _id: { type: GraphQLID },
-    '@state': { type: GraphQLString },
-    '@draftPublished': { type: GraphQLBoolean },
-    '@lastModified': { type: GraphQLDateTime }
+    _state: { type: GraphQLString },
+    _draftPublished: { type: GraphQLBoolean },
+    _lastModified: { type: GraphQLDateTime }
   }
 
   return new GraphQLObjectType({
