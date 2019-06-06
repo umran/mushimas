@@ -61,6 +61,50 @@ const createFindField = (schemaKey, schemas, types, resolver) => {
   }
 }
 
+const createPreviewOneField = (schemaKey, types, resolver) => {
+  return {
+    type: types[schemaKey].objectType,
+    args: {
+      _id: {
+        type: new GraphQLNonNull(GraphQLID)
+      }
+    },
+    resolve: async (root, args, context) => {
+      return await resolver({
+        method: 'previewOne',
+        collection: schemaKey,
+        root,
+        args,
+        context
+      })
+    }
+  }
+}
+
+const createPreviewField = (schemaKey, schemas, types, resolver) => {
+  return {
+    type: new GraphQLNonNull(types[schemaKey].resultsType),
+    args: Object.keys(schemas[schemaKey].fields).reduce((accumulator, fieldKey) => {
+      let generatedArg = generateArg(schemas[schemaKey].fields[fieldKey], schemas, types)
+
+      if (generatedArg) {
+        accumulator[fieldKey] = generatedArg
+      }
+      
+      return accumulator
+    }, { _id: { type: GraphQLID }, _options: { type: FindOptions } }),
+    resolve: async (root, args, context) => {
+      return await resolver({
+        method: 'preview',
+        collection: schemaKey,
+        root,
+        args,
+        context
+      })
+    }
+  }
+}
+
 const createSearchField = (schemaKey, types, resolver) => {
   return {
     type: new GraphQLNonNull(types[schemaKey].resultsType),
