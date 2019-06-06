@@ -9,6 +9,8 @@ module.exports = (schemas, types, resolver) => {
       if (schemas[schemaKey].class === 'collection') {
         accumulator[`findOne_${schemaKey}`] = createFindOneField(schemaKey, types, resolver)
         accumulator[`find_${schemaKey}`] = createFindField(schemaKey, schemas, types, resolver)
+        accumulator[`previewOne_${schemaKey}`] = createPreviewOneField(schemaKey, types, resolver)
+        accumulator[`preview_${schemaKey}`] = createPreviewField(schemaKey, schemas, types, resolver)
         accumulator[`search_${schemaKey}`] = createSearchField(schemaKey, types, resolver)
       }
 
